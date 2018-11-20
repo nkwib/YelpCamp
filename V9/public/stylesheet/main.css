@@ -1,0 +1,21 @@
+body {
+  background: #DDDDDD;
+  color: #1C1D25;
+}
+
+.thumbnail img {
+  width: 100%;
+}
+ .thumbnail{
+   padding: 0;
+   border-radius: 0;
+   box-shadow: 0;
+ }
+
+.thumbnail .caption-full {
+  padding: 2em;
+}
+
+.delete-form{
+  display: inline;
+}
