@@ -11,13 +11,14 @@ var express    = require("express"),
     User       = require('./models/user'),
     geo        = require('mapbox-geocoding');
     seedDB     = require("./seeds");
+    mongoString = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/HelloMongoose';
 
 //requiring routes
 var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index");
 
-mongoose.connect('mongodb://localhost:27017/yelp_campV8', { useNewUrlParser: true });
+mongoose.connect(mongoString, { useNewUrlParser: true });
 app.locals.moment = require('moment');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"))
@@ -50,6 +51,6 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 
-app.listen(process.env.PORT, function(){
+app.listen(process.env.PORT || 3000, function(){
   console.log("YelpCamp Server is running");
 });
